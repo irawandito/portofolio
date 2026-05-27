@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andito Portfolio</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Segoe UI',sans-serif;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      background:#f5f5f5;
+      color:#111;
+      overflow-x:hidden;
+    }
+
+    a{
+      text-decoration:none;
+    }
+
+    /* NAVBAR */
+
+    .navbar-custom{
+      padding:18px 0;
+      transition:.3s;
+      background:transparent;
+    }
+
+    .navbar-scrolled{
+      background:rgba(255,255,255,.7);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      box-shadow:0 2px 15px rgba(0,0,0,.06);
+    }
+
+    .navbar-brand{
+      font-weight:800;
+      font-size:1.3rem;
+      color:white !important;
+      transition:.3s;
+    }
+
+    .navbar-scrolled .navbar-brand{
+      color:#111 !important;
+    }
+
+    .nav-link{
+      color:white !important;
+      margin-left:18px;
+      font-size:14px;
+      font-weight:500;
+      position:relative;
+      transition:.3s;
+    }
+
+    .navbar-scrolled .nav-link{
+      color:#111 !important;
+    }
+
+    .nav-link::after{
+      content:'';
+      position:absolute;
+      left:0;
+      bottom:-5px;
+      width:0%;
+      height:2px;
+      background:currentColor;
+      transition:.3s;
+    }
+
+    .nav-link:hover::after{
+      width:100%;
+    }
+
+    .navbar-toggler{
+      border:none;
+    }
+
+    .navbar-toggler:focus{
+      box-shadow:none;
+    }
+
+    .navbar-toggler-icon{
+      filter:brightness(0) invert(1);
+    }
+
+    .navbar-scrolled .navbar-toggler-icon{
+      filter:none;
+    }
+
+    /* HERO */
+
+    .hero{
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      position:relative;
+      overflow:hidden;
+      color:white;
+
+      background:
+      linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+      url('assets/img/hero.jpeg');
+
+      background-size:cover;
+      background-position:center;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:2;
+      text-align:center;
+    }
+
+    .hero h5{
+      letter-spacing:2px;
+      margin-bottom:15px;
+      color:#d1d5db;
+    }
+
+    .hero h1{
+      font-size:5rem;
+      font-weight:900;
+      line-height:1;
+      margin-bottom:20px;
+    }
+
+    .hero p{
+      max-width:650px;
+      margin:auto;
+      line-height:1.8;
+      color:#e5e7eb;
+    }
+
+    .btn-main{
+      background:white;
+      color:#111;
+      border:none;
+      padding:14px 30px;
+      border-radius:50px;
+      font-weight:600;
+      margin-top:30px;
+      transition:.3s;
+    }
+
+    .btn-main:hover{
+      transform:translateY(-4px);
+      background:#ddd;
+    }
+
+    /* SECTION */
+
+    section{
+      padding:90px 0;
+    }
+
+    .section-title{
+      font-size:2.5rem;
+      font-weight:800;
+      margin-bottom:55px;
+      text-align:center;
+    }
+
+    /* ABOUT */
+
+    .about-box{
+      background:white;
+      border-radius:28px;
+      padding:45px;
+      box-shadow:0 10px 25px rgba(0,0,0,.05);
+    }
+
+    /* CARDS */
+
+    .card-modern{
+      background:white;
+      border:none;
+      border-radius:22px;
+      overflow:hidden;
+      box-shadow:0 10px 20px rgba(0,0,0,.05);
+      transition:.3s;
+      height:100%;
+    }
+
+    .card-modern:hover{
+      transform:translateY(-8px);
+    }
+
+    .card-modern img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+    }
+
+    .card-body{
+      padding:20px;
+    }
+
+    .card-body h4{
+      font-size:1.1rem;
+      font-weight:700;
+      margin-bottom:10px;
+    }
+
+    .card-body p{
+      color:#666;
+      line-height:1.6;
+      font-size:.92rem;
+    }
+
+    /* SKILLS */
+
+    .skill-box{
+      background:white;
+      border-radius:24px;
+      padding:30px;
+      box-shadow:0 10px 25px rgba(0,0,0,.05);
+      height:100%;
+    }
+
+    .skill-box h4{
+      margin-bottom:25px;
+      font-weight:700;
+    }
+
+    .skill-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    .skill-item{
+      background:#f3f4f6;
+      padding:14px;
+      border-radius:14px;
+      text-align:center;
+      font-size:14px;
+      font-weight:600;
+      transition:.3s;
+    }
+
+    .skill-item:hover{
+      background:#e5e7eb;
+      transform:translateY(-3px);
+    }
+
+    /* TIMELINE */
+
+    .timeline{
+      border-left:3px solid #111;
+      padding-left:28px;
+    }
+
+    .timeline-item{
+      margin-bottom:40px;
+    }
+
+    .timeline-item h5{
+      font-weight:700;
+    }
+
+    .timeline-item p{
+      color:#666;
+      line-height:1.7;
+      margin-top:10px;
+    }
+
+    /* CONTACT */
+
+    .contact-box{
+      background:white;
+      border-radius:28px;
+      padding:55px;
+      text-align:center;
+      box-shadow:0 10px 25px rgba(0,0,0,.05);
+    }
+
+    .social-icons{
+      margin-top:25px;
+    }
+
+    .social-icons a{
+      width:50px;
+      height:50px;
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      border-radius:50%;
+      background:#111;
+      color:white;
+      margin:8px;
+      transition:.3s;
+    }
+
+    .social-icons a:hover{
+      transform:translateY(-4px);
+      background:#333;
+    }
+
+    footer{
+      text-align:center;
+      padding:30px 0;
+      color:#666;
+    }
+
+    /* TABLET */
+
+    @media(max-width:992px){
+
+      .hero{
+        padding:120px 0 80px;
+      }
+
+      .hero h1{
+        font-size:4rem;
+      }
+
+      .about-box{
+        padding:35px;
+      }
+    }
+
+    /* MOBILE */
+
+    @media(max-width:768px){
+
+      section{
+        padding:70px 0;
+      }
+
+      .hero{
+        min-height:90vh;
+        text-align:center;
+      }
+
+      .hero h1{
+        font-size:2.8rem;
+      }
+
+      .hero p{
+        font-size:.95rem;
+      }
+
+      .section-title{
+        font-size:2rem;
+        margin-bottom:40px;
+      }
+
+      .about-box,
+      .contact-box{
+        padding:25px;
+      }
+
+      .card-modern img{
+        height:150px;
+      }
+
+      .timeline{
+        padding-left:18px;
+      }
+
+      .navbar-collapse{
+        background:rgba(255,255,255,.85);
+        backdrop-filter:blur(14px);
+        padding:18px;
+        border-radius:18px;
+        margin-top:15px;
+      }
+
+      .navbar-collapse .nav-link{
+        color:#111 !important;
+        margin:10px 0;
+      }
+
+      .project-card{
+        width:50%;
+      }
+
+      .card-modern{
+        border-radius:18px;
+      }
+
+      .card-modern img{
+        height:110px;
+      }
+
+      .card-body{
+        padding:12px;
+      }
+
+      .card-body h4{
+        font-size:.9rem;
+      }
+
+      .card-body p{
+        font-size:.72rem;
+        line-height:1.4;
+      }
+
+      .skill-box{
+        padding:20px;
+      }
+
+      .skill-item{
+        font-size:12px;
+        padding:10px;
+      }
+
+      .social-icons a{
+        width:42px;
+        height:42px;
+        font-size:15px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="navbar">
+
+    <div class="container">
+
+      <a class="navbar-brand" href="#">
+        Andito.
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#project">Projects</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#skills">Skills</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#experience">Experience</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="container">
+
+      <div class="hero-content" data-aos="fade-up">
+
+        <h5>Hello, I'm</h5>
+
+        <h1>
+          ANDITO<br>
+          BAYU IRAWAN
+        </h1>
+
+        <p>
+          Web Developer with experience in website development,
+          database management, and teamwork collaboration.
+        </p>
+
+        <button class="btn-main">
+          Download CV
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ABOUT -->
+
+  <section id="about">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        About Me
+      </h2>
+
+      <div class="about-box">
+
+        <div class="row align-items-center g-5">
+
+          <div class="col-lg-6" data-aos="fade-right">
+
+            <img 
+              src="assets/img/about.jpeg"
+              class="img-fluid rounded-4"
+            >
+
+          </div>
+
+          <div class="col-lg-6" data-aos="fade-left">
+
+            <h3 class="fw-bold mb-4">
+              Web Developer & Tech Enthusiast
+            </h3>
+
+            <p>
+              I am a Software Engineering graduate with a strong interest
+              in web development and modern technology.
+            </p>
+
+            <p>
+              Experienced in building responsive web applications,
+              managing databases, and collaborating in team-based projects.
+            </p>
+
+            <p>
+              I also worked as an Account Executive at MyRepublic
+              in May 2026, handling client communication,
+              product promotion, and sales targets.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PROJECT -->
+
+  <section id="project">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        My Projects
+      </h2>
+
+      <div class="row g-4">
+
+        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+
+          <div class="card-modern">
+
+            <img src="assets/img/project1.jpeg">
+
+            <div class="card-body">
+
+              <h4>Fullstack Website</h4>
+
+              <p>
+                Laravel and MySQL web application project.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+
+          <div class="card-modern">
+
+            <img src="assets/img/project2.jpeg">
+
+            <div class="card-body">
+
+              <h4>Database System</h4>
+
+              <p>
+                Operational data management system.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+
+          <div class="card-modern">
+
+            <img src="assets/img/project3.jpeg">
+
+            <div class="card-body">
+
+              <h4>Team Collaboration</h4>
+
+              <p>
+                Collaboration in testing and debugging systems.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- SKILLS -->
+
+  <section id="skills">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Skills
+      </h2>
+
+      <div class="row g-4">
+
+        <div class="col-lg-6" data-aos="fade-right">
+
+          <div class="skill-box">
+
+            <h4>Hard Skills</h4>
+
+            <div class="skill-grid">
+
+              <div class="skill-item">PHP</div>
+              <div class="skill-item">Laravel</div>
+              <div class="skill-item">JavaScript</div>
+              <div class="skill-item">React JS</div>
+              <div class="skill-item">MySQL</div>
+              <div class="skill-item">Bootstrap</div>
+              <div class="skill-item">Excel</div>
+              <div class="skill-item">Word</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <div class="col-lg-6" data-aos="fade-left">
+
+          <div class="skill-box">
+
+            <h4>Soft Skills</h4>
+
+            <div class="skill-grid">
+
+              <div class="skill-item">Teamwork</div>
+              <div class="skill-item">Communication</div>
+              <div class="skill-item">Leadership</div>
+              <div class="skill-item">Problem Solving</div>
+              <div class="skill-item">Adaptability</div>
+              <div class="skill-item">Creativity</div>
+              <div class="skill-item">Discipline</div>
+              <div class="skill-item">Time Management</div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- EXPERIENCE -->
+
+  <section id="experience">
+
+    <div class="container">
+
+      <h2 class="section-title" data-aos="fade-up">
+        Experience
+      </h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item" data-aos="fade-up">
+
+          <h5>MyRepublic</h5>
+
+          <small>May 2026</small>
+
+          <p>
+            Worked as an Account Executive responsible for
+            client communication, product promotion,
+            and achieving sales targets.
+          </p>
+
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up">
+
+          <h5>PT Telkom Akses</h5>
+
+          <small>January 2026 - April 2026</small>
+
+          <p>
+            Managed operational data,
+            assisted field technicians,
+            and supported warehouse activities.
+          </p>
+
+        </div>
+
+        <div class="timeline-item" data-aos="fade-up">
+
+          <h5>Fullstack Web Developer</h5>
+
+          <small>April 2025 - May 2025</small>
+
+          <p>
+            Developed web applications,
+            performed debugging,
+            and created responsive user interfaces.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CONTACT -->
+
+  <section id="contact">
+
+    <div class="container">
+
+      <div class="contact-box" data-aos="zoom-in">
+
+        <h2 class="fw-bold mb-4">
+          Let's Work Together
+        </h2>
+
+        <p>
+          Salatiga, Indonesia <br>
+          anditobayuirawan@gmail.com <br>
+          082322946155
+        </p>
+
+        <div class="social-icons">
+
+          <a href="#">
+            <i class="fab fa-github"></i>
+          </a>
+
+          <a href="#">
+            <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="#">
+            <i class="fab fa-whatsapp"></i>
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer>
+    © 2026 Andito Bayu Irawan
+  </footer>
+
+  <!-- JS -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
+  <script>
+
+    AOS.init({
+      duration:1000,
+      once:true
+    });
+
+    const navbar = document.getElementById('navbar');
+
+    window.addEventListener('scroll', () => {
+
+      if(window.scrollY > 80){
+        navbar.classList.add('navbar-scrolled');
+      }else{
+        navbar.classList.remove('navbar-scrolled');
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
