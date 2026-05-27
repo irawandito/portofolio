@@ -37,7 +37,17 @@
       text-decoration:none;
     }
 
+    img{
+      max-width:100%;
+      display:block;
+    }
+
     /* NAVBAR */
+
+    .navbar{
+      width:100%;
+      left:0;
+    }
 
     .navbar-custom{
       padding:18px 0;
@@ -46,7 +56,7 @@
     }
 
     .navbar-scrolled{
-      background:rgba(255,255,255,.7);
+      background:rgba(255,255,255,.9);
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
       box-shadow:0 2px 15px rgba(0,0,0,.06);
@@ -113,8 +123,9 @@
       min-height:100vh;
       display:flex;
       align-items:center;
+      justify-content:center;
+      text-align:center;
       position:relative;
-      overflow:hidden;
       color:white;
 
       background:
@@ -128,7 +139,6 @@
     .hero-content{
       position:relative;
       z-index:2;
-      text-align:center;
     }
 
     .hero h5{
@@ -189,7 +199,13 @@
       box-shadow:0 10px 25px rgba(0,0,0,.05);
     }
 
-    /* CARDS */
+    .about-img{
+      width:100%;
+      border-radius:22px;
+      object-fit:cover;
+    }
+
+    /* CARD */
 
     .card-modern{
       background:white;
@@ -263,7 +279,7 @@
       transform:translateY(-3px);
     }
 
-    /* TIMELINE */
+    /* EXPERIENCE */
 
     .timeline{
       border-left:3px solid #111;
@@ -271,7 +287,7 @@
     }
 
     .timeline-item{
-      margin-bottom:40px;
+      margin-bottom:45px;
     }
 
     .timeline-item h5{
@@ -282,6 +298,14 @@
       color:#666;
       line-height:1.7;
       margin-top:10px;
+    }
+
+    .experience-img{
+      width:100%;
+      height:220px;
+      object-fit:cover;
+      border-radius:18px;
+      margin-bottom:18px;
     }
 
     /* CONTACT */
@@ -326,10 +350,6 @@
 
     @media(max-width:992px){
 
-      .hero{
-        padding:120px 0 80px;
-      }
-
       .hero h1{
         font-size:4rem;
       }
@@ -337,6 +357,7 @@
       .about-box{
         padding:35px;
       }
+
     }
 
     /* MOBILE */
@@ -349,11 +370,11 @@
 
       .hero{
         min-height:90vh;
-        text-align:center;
+        padding:120px 0 80px;
       }
 
       .hero h1{
-        font-size:2.8rem;
+        font-size:2.7rem;
       }
 
       .hero p{
@@ -370,49 +391,39 @@
         padding:25px;
       }
 
-      .card-modern img{
-        height:150px;
-      }
-
-      .timeline{
-        padding-left:18px;
-      }
-
       .navbar-collapse{
-        background:rgba(255,255,255,.85);
+        background:rgba(255,255,255,.95);
         backdrop-filter:blur(14px);
-        padding:18px;
+        -webkit-backdrop-filter:blur(14px);
+
+        padding:16px 20px;
         border-radius:18px;
         margin-top:15px;
       }
 
       .navbar-collapse .nav-link{
         color:#111 !important;
-        margin:10px 0;
       }
 
-      .project-card{
-        width:50%;
-      }
-
-      .card-modern{
-        border-radius:18px;
+      .nav-link{
+        margin-left:0;
+        padding:12px 0;
       }
 
       .card-modern img{
-        height:110px;
+        height:120px;
       }
 
       .card-body{
-        padding:12px;
+        padding:14px;
       }
 
       .card-body h4{
-        font-size:.9rem;
+        font-size:.92rem;
       }
 
       .card-body p{
-        font-size:.72rem;
+        font-size:.75rem;
         line-height:1.4;
       }
 
@@ -425,11 +436,16 @@
         padding:10px;
       }
 
+      .experience-img{
+        height:160px;
+      }
+
       .social-icons a{
         width:42px;
         height:42px;
         font-size:15px;
       }
+
     }
 
   </style>
@@ -531,7 +547,7 @@
 
             <img 
               src="assets/img/about.jpeg"
-              class="img-fluid rounded-4"
+              class="about-img"
             >
 
           </div>
@@ -580,7 +596,7 @@
 
       <div class="row g-4">
 
-        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+        <div class="col-6 col-md-6 col-lg-4" data-aos="zoom-in">
 
           <div class="card-modern">
 
@@ -600,7 +616,7 @@
 
         </div>
 
-        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+        <div class="col-6 col-md-6 col-lg-4" data-aos="zoom-in">
 
           <div class="card-modern">
 
@@ -620,7 +636,7 @@
 
         </div>
 
-        <div class="col-6 col-md-6 col-lg-4 project-card" data-aos="zoom-in">
+        <div class="col-6 col-md-6 col-lg-4" data-aos="zoom-in">
 
           <div class="card-modern">
 
@@ -724,6 +740,8 @@
 
         <div class="timeline-item" data-aos="fade-up">
 
+          <img src="assets/img/sales.jpeg" class="experience-img">
+
           <h5>MyRepublic</h5>
 
           <small>May 2026</small>
@@ -738,12 +756,14 @@
 
         <div class="timeline-item" data-aos="fade-up">
 
+          <img src="assets/img/excel.jpeg" class="experience-img">
+
           <h5>PT Telkom Akses</h5>
 
           <small>January 2026 - April 2026</small>
 
           <p>
-            Managed operational data,
+            Managed spreadsheet and operational data,
             assisted field technicians,
             and supported warehouse activities.
           </p>
@@ -751,6 +771,8 @@
         </div>
 
         <div class="timeline-item" data-aos="fade-up">
+
+          <img src="assets/img/coding.jpeg" class="experience-img">
 
           <h5>Fullstack Web Developer</h5>
 
@@ -796,6 +818,10 @@
 
           <a href="#">
             <i class="fab fa-instagram"></i>
+          </a>
+
+          <a href="#">
+            <i class="fab fa-linkedin"></i>
           </a>
 
           <a href="#">
