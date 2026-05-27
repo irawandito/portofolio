@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>Andito Portfolio</title>
 
   <!-- Bootstrap -->
@@ -38,7 +40,7 @@
     }
 
     img{
-      max-width:100%;
+      width:100%;
       display:block;
     }
 
@@ -56,15 +58,15 @@
     }
 
     .navbar-scrolled{
-      background:rgba(255,255,255,.9);
+      background:rgba(255,255,255,.92);
       backdrop-filter:blur(14px);
       -webkit-backdrop-filter:blur(14px);
       box-shadow:0 2px 15px rgba(0,0,0,.06);
     }
 
     .navbar-brand{
-      font-weight:800;
       font-size:1.3rem;
+      font-weight:800;
       color:white !important;
       transition:.3s;
     }
@@ -121,11 +123,12 @@
 
     .hero{
       min-height:100vh;
+
       display:flex;
       align-items:center;
       justify-content:center;
+
       text-align:center;
-      position:relative;
       color:white;
 
       background:
@@ -165,10 +168,15 @@
       background:white;
       color:#111;
       border:none;
+
       padding:14px 30px;
+
       border-radius:50px;
+
       font-weight:600;
+
       margin-top:30px;
+
       transition:.3s;
     }
 
@@ -184,37 +192,38 @@
     }
 
     .section-title{
+      text-align:center;
       font-size:2.5rem;
       font-weight:800;
       margin-bottom:55px;
-      text-align:center;
     }
 
     /* ABOUT */
 
     .about-box{
       background:white;
-      border-radius:28px;
       padding:45px;
+      border-radius:28px;
       box-shadow:0 10px 25px rgba(0,0,0,.05);
     }
 
     .about-img{
-      width:100%;
       border-radius:22px;
       object-fit:cover;
     }
 
-    /* CARD */
+    /* PROJECT */
 
     .card-modern{
       background:white;
       border:none;
       border-radius:22px;
       overflow:hidden;
-      box-shadow:0 10px 20px rgba(0,0,0,.05);
-      transition:.3s;
       height:100%;
+
+      box-shadow:0 10px 20px rgba(0,0,0,.05);
+
+      transition:.3s;
     }
 
     .card-modern:hover{
@@ -222,7 +231,6 @@
     }
 
     .card-modern img{
-      width:100%;
       height:220px;
       object-fit:cover;
     }
@@ -238,9 +246,9 @@
     }
 
     .card-body p{
-      color:#666;
-      line-height:1.6;
       font-size:.92rem;
+      line-height:1.6;
+      color:#666;
     }
 
     /* SKILLS */
@@ -325,13 +333,18 @@
     .social-icons a{
       width:50px;
       height:50px;
+
       display:inline-flex;
-      justify-content:center;
       align-items:center;
+      justify-content:center;
+
       border-radius:50%;
+
       background:#111;
       color:white;
+
       margin:8px;
+
       transition:.3s;
     }
 
@@ -374,7 +387,7 @@
       }
 
       .hero h1{
-        font-size:2.7rem;
+        font-size:2.6rem;
       }
 
       .hero p{
@@ -391,27 +404,35 @@
         padding:25px;
       }
 
+      /* NAVBAR MOBILE FIX */
+
+      .navbar-custom{
+        padding:14px 0;
+      }
+
       .navbar-collapse{
-        background:rgba(255,255,255,.95);
+        background:rgba(255,255,255,.96);
+
         backdrop-filter:blur(14px);
         -webkit-backdrop-filter:blur(14px);
 
-        padding:16px 20px;
+        margin-top:12px;
+
+        padding:16px;
+
         border-radius:18px;
-        margin-top:15px;
       }
 
       .navbar-collapse .nav-link{
         color:#111 !important;
+        margin-left:0;
+        padding:12px 10px;
       }
 
-      .nav-link{
-        margin-left:0;
-        padding:12px 0;
-      }
+      /* CARD */
 
       .card-modern img{
-        height:120px;
+        height:130px;
       }
 
       .card-body{
@@ -419,13 +440,15 @@
       }
 
       .card-body h4{
-        font-size:.92rem;
+        font-size:.9rem;
       }
 
       .card-body p{
         font-size:.75rem;
         line-height:1.4;
       }
+
+      /* SKILLS */
 
       .skill-box{
         padding:20px;
@@ -436,9 +459,13 @@
         padding:10px;
       }
 
+      /* EXPERIENCE */
+
       .experience-img{
         height:160px;
       }
+
+      /* SOCIAL */
 
       .social-icons a{
         width:42px;
@@ -449,6 +476,7 @@
     }
 
   </style>
+
 </head>
 
 <body>
@@ -457,13 +485,18 @@
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-custom" id="navbar">
 
-    <div class="container">
+    <div class="container-fluid px-3 px-lg-5">
 
       <a class="navbar-brand" href="#">
-        Portfolio.
+        Andito.
       </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <button 
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navMenu"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
