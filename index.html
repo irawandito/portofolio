@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Andito Portfolio</title>
+<title>Portfolio Andito.</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -13,24 +13,23 @@
 
 <style>
 
-html,
-body {
-  overflow-x: hidden;
-  width: 100%;
-  position: relative;
-  scroll-behavior: smooth;
-}
-
-*{
+/* Properti scroll-behavior di html SUDAH DIHAPUS karena bikin bentrok & macet */
+html {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 body {
   font-family: 'Segoe UI', sans-serif;
   background: #f5f5f5;
   color: #111;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 img {
@@ -38,7 +37,7 @@ img {
   display: block;
 }
 
-/* NAVBAR */
+/* NAVBAR & ANIMASI GARIS BAWAH */
 
 .navbar {
   padding: 18px 0;
@@ -63,14 +62,49 @@ img {
 }
 
 .nav-link {
-  color: white !important;
+  color: rgba(255, 255, 255, 0.7) !important;
   margin-left: 18px;
   font-size: 14px;
   font-weight: 500;
+  position: relative;
+  padding: 6px 0 !important;
+  transition: color 0.3s ease;
 }
 
 .navbar-scrolled .nav-link {
+  color: #555 !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: white !important;
+}
+
+.navbar-scrolled .nav-link:hover,
+.navbar-scrolled .nav-link.active {
   color: #111 !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-out;
+}
+
+.navbar-scrolled .nav-link::after {
+  background-color: #111;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
 }
 
 .navbar-toggler {
@@ -102,6 +136,7 @@ img {
   background-size: cover;
   background-position: center;
   color: white;
+  overflow-x: hidden;
 }
 
 .hero h5 {
@@ -133,17 +168,20 @@ img {
   font-weight: 600;
   margin-top: 28px;
   transition: .3s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .btn-main:hover {
   transform: translateY(-4px);
+  color: #111;
 }
 
 /* SECTION */
 
 section {
   padding: 90px 0;
-  overflow-x: hidden; /* Mengunci konten section agar tidak meluap */
+  overflow-x: hidden; 
 }
 
 .section-title {
@@ -168,20 +206,44 @@ section {
   width: 100%;
 }
 
-/* CARD */
+/* GLOBAL HOVER ZOOM STYLE */
 
-.card-modern {
+.card-modern,
+.skill-box,
+.timeline-item {
   background: white;
   border: none;
   border-radius: 22px;
   overflow: hidden;
-  height: 100%;
   box-shadow: 0 10px 20px rgba(0,0,0,.05);
-  transition: .3s;
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+  transform: scale(1);
 }
 
-.card-modern:hover {
-  transform: translateY(-6px);
+.timeline-item {
+  padding: 25px;
+  margin-bottom: 45px;
+  background: white;
+}
+
+.card-modern {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.skill-box {
+  padding: 30px;
+  height: 100%;
+}
+
+.card-modern:hover, .card-modern:active,
+.skill-box:hover, .skill-box:active,
+.timeline-item:hover, .timeline-item:active {
+  transform: scale(1.04) translateY(-5px);
+  box-shadow: 0 20px 35px rgba(0,0,0,.15);
+  z-index: 5;
+  position: relative;
 }
 
 .card-modern img {
@@ -190,8 +252,19 @@ section {
   object-fit: cover;
 }
 
+/* EXPERIENCE IMAGE */
+.experience-img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 18px;
+  margin-bottom: 16px;
+}
+
 .card-body {
   padding: 20px;
+  flex-grow: 1;
 }
 
 .card-body h4 {
@@ -204,17 +277,10 @@ section {
   color: #666;
   font-size: .9rem;
   line-height: 1.6;
+  margin: 0;
 }
 
-/* SKILLS */
-
-.skill-box {
-  background: white;
-  border-radius: 22px;
-  padding: 30px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.05);
-  height: 100%;
-}
+/* SKILLS INTERNAL GRID */
 
 .skill-grid {
   display: grid;
@@ -231,23 +297,11 @@ section {
   font-weight: 600;
 }
 
-/* EXPERIENCE */
+/* EXPERIENCE TIMELINE */
 
 .timeline {
   border-left: 3px solid #111;
   padding-left: 24px;
-}
-
-.timeline-item {
-  margin-bottom: 45px;
-}
-
-.experience-img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-  border-radius: 18px;
-  margin-bottom: 16px;
 }
 
 /* CONTACT */
@@ -258,6 +312,12 @@ section {
   padding: 50px;
   text-align: center;
   box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+}
+
+.contact-box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 20px 35px rgba(0,0,0,.12);
 }
 
 .social-icons {
@@ -283,11 +343,11 @@ section {
 
 footer {
   text-align: center;
-  padding: 30px 0;
+  padding: 30px 0;  
   color: #666;
 }
 
-/* MOBILE */
+/* MOBILE RESPONSIVE TWEAKS */
 
 @media(max-width:991px){
   .navbar-collapse {
@@ -298,10 +358,21 @@ footer {
   }
 
   .nav-link {
-    color: #111 !important;
+    color: #555 !important;
     margin-left: 0;
-    padding: 12px 0;
+    padding: 12px 0 !important;
     text-align: center;
+    display: inline-block;
+    width: auto;
+  }
+
+  .nav-link:hover,
+  .nav-link.active {
+    color: #111 !important;
+  }
+
+  .nav-link::after {
+    background-color: #111;
   }
 }
 
@@ -329,12 +400,17 @@ footer {
   }
 
   .about-box,
-  .contact-box {
+  .contact-box,
+  .timeline-item {
     padding: 24px;
   }
 
   .card-modern img {
-    height: 120px;
+    height: 140px;
+  }
+
+  .experience-img {
+    height: 180px;
   }
 
   .card-body {
@@ -359,10 +435,6 @@ footer {
     padding: 10px;
   }
 
-  .experience-img {
-    height: 160px;
-  }
-
   .social-icons a {
     width: 42px;
     height: 42px;
@@ -374,11 +446,11 @@ footer {
 
 </head>
 
-<body>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="100">
 
 <nav class="navbar navbar-expand-lg fixed-top" id="navbar">
   <div class="container">
-    <a class="navbar-brand" href="#">Andito.</a>
+    <a class="navbar-brand" href="#">Portfolio.</a>
 
     <button
       class="navbar-toggler"
@@ -416,10 +488,9 @@ footer {
     <h5>Hello, I'm</h5>
     <h1>ANDITO<br>BAYU IRAWAN</h1>
     <p>
-      Web Developer with experience in website development,
-      database management, and teamwork collaboration.
+      Lulusan Rekayasa Perangkat Lunak dengan kompetensi terintegrasi pada Pengembangan Web Fullstack, Tata Kelola Basis Data Telekomunikasi, dan Manajemen Hubungan Pelanggan.
     </p>
-    <button class="btn-main">Download CV</button>
+    <a href="#project" class="btn-main">Lihat Portfolio</a>
   </div>
 </section>
 
@@ -434,17 +505,12 @@ footer {
         </div>
 
         <div class="col-lg-6" data-aos="fade-left">
-          <h3 class="fw-bold mb-4">Web Developer & Tech Enthusiast</h3>
+          <h3 class="fw-bold mb-4">Software & Network Engineer</h3>
           <p>
-            Software Engineering graduate with strong interest
-            in modern web development and technology.
+            Saya adalah lulusan Rekayasa Perangkat Lunak dari SMK Negeri 1 Tengaran dengan nilai rata-rata 86. Memiliki kompetensi kuat dalam pengembangan aplikasi web (Frontend & Fullstack) serta pemahaman taktis pada infrastruktur jaringan.
           </p>
           <p>
-            Experienced in responsive web applications,
-            database management, and teamwork collaboration.
-          </p>
-          <p>
-            Worked as Account Executive at MyRepublic in May 2026.
+           Melalui pengalaman di Telkom Akses, saya berhasil mengelola validasi basis data aset serta menguasai prosedur teknis instalasi dan perbaikan jaringan fiber optik di lapangan. Selain itu, peran sebagai Account Executive di MyRepublic telah membentuk kemampuan komunikasi profesional, negosiasi bisnis, dan analisis kebutuhan klien. Saya fokus pada kedisiplinan, adaptabilitas tinggi, dan orientasi pada target kerja.
           </p>
         </div>
       </div>
@@ -458,35 +524,54 @@ footer {
 
     <div class="row gy-4">
       <div class="col-6 col-md-6 col-lg-4">
-        <div class="card-modern" data-aos="zoom-in">
-          <img src="assets/img/project1.jpeg">
-          <div class="card-body">
-            <h4>Fullstack Website</h4>
-            <p>Laravel and MySQL website project.</p>
+        <div data-aos="zoom-in" class="h-100">
+          <div class="card-modern"> 
+            <img src="assets/img/project1.jpeg">
+            <div class="card-body">
+              <h4>Warmindo Website (Kolaborasi)</h4>
+              <p>Platform pemesanan Warmindo online yang responsif. Di sini saya berperan sebagai Frontend Developer yang fokus pada desain antarmuka, visual menu, dan pengalaman transaksi pengguna.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-6 col-md-6 col-lg-4">
-        <div class="card-modern" data-aos="zoom-in">
-          <img src="assets/img/project2.jpeg">
-          <div class="card-body">
-            <h4>Database System</h4>
-            <p>Spreadsheet and database management.</p>
+        <div data-aos="zoom-in" class="h-100">
+          <div class="card-modern">
+            <img src="assets/img/project2.jpeg">
+            <div class="card-body">
+              <h4>Wishvault</h4>
+              <p>Aplikasi web responsif untuk mencatat dan mengurasi produk impian atau barang dalam satu tempat dengan tampilan yang bersih dan intuitif.</p>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-6 col-md-6 col-lg-4">
-        <div class="card-modern" data-aos="zoom-in">
-          <img src="assets/img/project3.jpeg">
-          <div class="card-body">
-            <h4>Team Collaboration</h4>
-            <p>Testing and debugging collaboration.</p>
+        <div data-aos="zoom-in" class="h-100">
+          <div class="card-modern">
+            <img src="assets/img/project3.jpeg">
+            <div class="card-body">
+              <h4>Football Ticket Platform</h4>
+              <p>Platform pemesanan tiket bioskop/pertandingan sepak bola yang saya bangun secara Fullstack, mengintegrasikan sistem pembelian tiket sekaligus pembaruan klasemen liga secara real-time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-6 col-lg-4">
+        <div data-aos="zoom-in" class="h-100">
+          <div class="card-modern">
+            <img src="assets/img/project4.jpeg">
+            <div class="card-body">
+              <h4>Database System</h4>
+              <p>Proyek manajemen data infrastruktur jaringan saat magang di Telkom Akses, berfokus pada validasi aset, pembaruan basis data, dan efisiensi pelaporan teknis di lapangan.</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -496,33 +581,33 @@ footer {
 
     <div class="row gy-4">
       <div class="col-lg-6">
-        <div class="skill-box" data-aos="fade-right">
-          <h4 class="mb-4 fw-bold">Hard Skills</h4>
-          <div class="skill-grid">
-            <div class="skill-item">PHP</div>
-            <div class="skill-item">Laravel</div>
-            <div class="skill-item">JavaScript</div>
-            <div class="skill-item">React JS</div>
-            <div class="skill-item">MySQL</div>
-            <div class="skill-item">Bootstrap</div>
-            <div class="skill-item">Excel</div>
-            <div class="skill-item">Word</div>
+        <div data-aos="fade-right" class="h-100">
+          <div class="skill-box">
+            <h4 class="mb-4 fw-bold">Hard Skills</h4>
+            <div class="skill-grid">
+              <div class="skill-item">PHP</div>
+              <div class="skill-item">Laravel</div>
+              <div class="skill-item">React JS</div>
+              <div class="skill-item">MySQL</div>
+              <div class="skill-item">Excel</div>
+              <div class="skill-item">Word</div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6">
-        <div class="skill-box" data-aos="fade-left">
-          <h4 class="mb-4 fw-bold">Soft Skills</h4>
-          <div class="skill-grid">
-            <div class="skill-item">Communication</div>
-            <div class="skill-item">Teamwork</div>
-            <div class="skill-item">Leadership</div>
-            <div class="skill-item">Problem Solving</div>
-            <div class="skill-item">Creativity</div>
-            <div class="skill-item">Discipline</div>
-            <div class="skill-item">Adaptability</div>
-            <div class="skill-item">Time Management</div>
+        <div data-aos="fade-left" class="h-100">
+          <div class="skill-box">
+            <h4 class="mb-4 fw-bold">Soft Skills</h4>
+            <div class="skill-grid">
+              <div class="skill-item">Communication</div>
+              <div class="skill-item">Teamwork</div>
+              <div class="skill-item">Problem Solving</div>
+              <div class="skill-item">Creativity</div>
+              <div class="skill-item">Discipline</div>
+              <div class="skill-item">Adaptability</div>
+            </div>
           </div>
         </div>
       </div>
@@ -535,28 +620,37 @@ footer {
     <h2 class="section-title" data-aos="fade-up">Experience</h2>
 
     <div class="timeline">
-      <div class="timeline-item" data-aos="fade-up">
-        <img src="assets/img/project1.jpeg" class="experience-img">
-        <h5>MyRepublic</h5>
-        <small>May 2026</small>
-        <p>
-          Account Executive responsible for communication,
-          promotion, and sales targets.
-        </p>
+      <div data-aos="fade-up">
+        <div class="timeline-item">
+          <img src="assets/img/ex1.png" class="experience-img">
+          <h5>MyRepublic - Account Executive</h5>
+          <small>May 2026 - Present</small>
+          <p>
+            Bekerja dalam membangun komunikasi profesional dan promosi langsung di lapangan untuk mengejar target penjualan layanan internet perusahaan.
+          </p>
+        </div>
       </div>
 
-      <div class="timeline-item" data-aos="fade-up">
-        <img src="assets/img/project3.jpeg" class="experience-img">
-        <h5>PT Telkom Akses</h5>
-        <small>January 2026 - April 2026</small>
-        <p>Spreadsheet and operational data management.</p>
+      <div data-aos="fade-up">
+        <div class="timeline-item">
+          <img src="assets/img/ex2.jpg" class="experience-img">
+          <h5>PT Telkom Akses - Internship</h5>
+          <small>January 2026 - April 2026</small>
+          <p>
+            Menjalani masa magang dengan mengelola input data operasional harian ke database, mendampingi teknisi untuk instalasi dan perbaikan jaringan fiber optik, serta membantu distribusi dan panataan material.
+          </p>
+        </div>
       </div>
 
-      <div class="timeline-item" data-aos="fade-up">
-        <img src="assets/img/project2.jpeg" class="experience-img">
-        <h5>Fullstack Web Developer</h5>
-        <small>April 2025 - May 2025</small>
-        <p>Responsive website development and debugging.</p>
+      <div data-aos="fade-up">
+        <div class="timeline-item">
+          <img src="assets/img/ex3.jpeg" class="experience-img">
+          <h5>SMK Negeri 1 Tengaran - Rekayasa Perangkat Lunak</h5>
+          <small>July 2023 - May 2026</small>
+          <p>
+            Mempelajari pemrograman web dan pengolahan data di sekolah, sekaligus berpengalaman merancang database dan membangun web responsif lewat proyek tim sampai lulus dengan nilai rata-rata 86.64.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -603,6 +697,34 @@ window.addEventListener('scroll',()=>{
   }else{
     navbar.classList.remove('navbar-scrolled');
   }
+});
+
+/* SCRIPT SMOOTH SCROLLING TOTAL REPAIR */
+document.querySelectorAll('.nav-link, .btn-main').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    
+    if (targetElement) {
+      const navbarHeight = document.getElementById('navbar').offsetHeight;
+      const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - (navbarHeight - 10);
+      
+      // Menggunakan native scrollTo dengan behavior smooth setelah CSS dinonaktifkan
+      window.scrollTo({
+        top: targetPosition,
+        behavior: 'smooth'
+      });
+
+      // Tutup toggle menu otomatis di HP setelah diklik
+      const navbarCollapse = document.getElementById('navMenu');
+      if (navbarCollapse.classList.contains('show')) {
+        const bootstrapCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+        bootstrapCollapse.hide();
+      }
+    }
+  });
 });
 
 </script>
