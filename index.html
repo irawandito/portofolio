@@ -13,16 +13,15 @@
 
 <style>
 
-/* Properti scroll-behavior di html SUDAH DIHAPUS karena bikin bentrok & macet */
 html {
   margin: 0;
   padding: 0;
 }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background: #f5f5f5;
-  color: #111;
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #fafafa;
+  color: #1a1a1a;
   margin: 0;
   padding: 0;
   position: relative;
@@ -180,15 +179,16 @@ img {
 /* SECTION */
 
 section {
-  padding: 90px 0;
+  padding: 100px 0;
   overflow-x: hidden; 
 }
 
 .section-title {
   text-align: center;
-  font-size: 2.4rem;
+  font-size: 2.6rem;
   font-weight: 800;
-  margin-bottom: 55px;
+  margin-bottom: 70px;
+  letter-spacing: -0.5px;
 }
 
 /* ABOUT */
@@ -197,7 +197,7 @@ section {
   background: white;
   padding: 45px;
   border-radius: 24px;
-  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
 }
 
 .about-img {
@@ -209,21 +209,13 @@ section {
 /* GLOBAL HOVER ZOOM STYLE */
 
 .card-modern,
-.skill-box,
-.timeline-item {
+.skill-box {
   background: white;
   border: none;
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,.05);
+  box-shadow: 0 10px 20px rgba(0,0,0,.04);
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
-  transform: scale(1);
-}
-
-.timeline-item {
-  padding: 25px;
-  margin-bottom: 45px;
-  background: white;
 }
 
 .card-modern {
@@ -238,28 +230,15 @@ section {
 }
 
 .card-modern:hover, .card-modern:active,
-.skill-box:hover, .skill-box:active,
-.timeline-item:hover, .timeline-item:active {
+.skill-box:hover, .skill-box:active {
   transform: scale(1.04) translateY(-5px);
-  box-shadow: 0 20px 35px rgba(0,0,0,.15);
-  z-index: 5;
-  position: relative;
+  box-shadow: 0 20px 35px rgba(0,0,0,.1);
 }
 
 .card-modern img {
   height: 220px;
   width: 100%;
   object-fit: cover;
-}
-
-/* EXPERIENCE IMAGE */
-.experience-img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 18px;
-  margin-bottom: 16px;
 }
 
 .card-body {
@@ -297,11 +276,155 @@ section {
   font-weight: 600;
 }
 
-/* EXPERIENCE TIMELINE */
+/* ===================================================
+   CREATIVE & MODERN ALTERNATING TIMELINE STYLE
+   =================================================== */
 
 .timeline {
-  border-left: 3px solid #111;
-  padding-left: 24px;
+  position: relative;
+  padding: 20px 0;
+}
+
+/* Garis vertikal tipis dengan efek gradasi modern di mobile */
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, #111111, #cccccc);
+}
+
+/* Kontainer per baris pengalaman */
+.timeline-row {
+  position: relative;
+  margin-bottom: 50px;
+  display: block;
+}
+
+/* Elemen kartu internal */
+.timeline-card {
+  position: relative;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  margin-left: 50px; /* Jarak aman dari garis kiri di HP */
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-card h5 {
+  font-weight: 700;
+  font-size: 1.25rem;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  letter-spacing: -0.3px;
+}
+
+.timeline-card small {
+  display: inline-block;
+  color: #888;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.78rem;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+.timeline-card p {
+  color: #555;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+.experience-img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 14px;
+}
+
+/* Titik lingkaran dekoratif di mobile */
+.timeline-badge {
+  position: absolute;
+  left: 14px;
+  top: 35px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #111;
+  border: 3px solid #fafafa;
+  z-index: 2;
+}
+
+/* MODE DESKTOP */
+@media (min-width: 768px) {
+  
+  /* Geser garis vertikal tepat ke tengah */
+  .timeline::before {
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, #111 0%, #aaa 80%, rgba(200,200,200,0) 100%);
+  }
+
+  /* Ubah struktur pembungkus AOS menjadi sistem grid dua sisi */
+  .timeline-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px; /* Jarak horizontal kiri-kanan dirapatkan agar tidak terlalu jauh */
+    margin-bottom: 50px; /* Jarak vertikal antar baris dirapatkan sedikit */
+    align-items: flex-start;
+  }
+
+  .timeline-card {
+    margin-left: 0; /* reset jarak mobile */
+    width: 100%;
+  }
+
+  /* Posisikan titik lingkaran pas di as tengah garis vertikal */
+  .timeline-badge {
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    width: 16px;
+    height: 16px;
+    background: #ffffff;
+    border: 4px solid #111111;
+    box-shadow: 0 0 0 4px rgba(0,0,0,0.05);
+  }
+
+  /* GAYA KARTU BARIS GANJIL (Kiri) */
+  .timeline-row:nth-child(odd) .timeline-card {
+    grid-column: 1;
+    text-align: right;
+  }
+  
+  /* GAYA KARTU BARIS GENAP (Kanan) */
+  .timeline-row:nth-child(even) .timeline-card {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  /* Sinkronisasi arah perataan gambar di dalam kartu kiri */
+  .timeline-row:nth-child(odd) .experience-img {
+    object-position: center;
+  }
+
+  /* Penyesuaian efek hover dinamis (miring tipis sesuai posisi sisi) */
+  .timeline-row:nth-child(odd) .timeline-card:hover {
+    transform: translateX(-5px) translateY(-4px);
+  }
+  .timeline-row:nth-child(even) .timeline-card:hover {
+    transform: translateX(5px) translateY(-4px);
+  }
 }
 
 /* CONTACT */
@@ -311,13 +434,13 @@ section {
   border-radius: 24px;
   padding: 50px;
   text-align: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,.04);
   transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
 }
 
 .contact-box:hover {
   transform: scale(1.03);
-  box-shadow: 0 20px 35px rgba(0,0,0,.12);
+  box-shadow: 0 20px 35px rgba(0,0,0,.1);
 }
 
 .social-icons {
@@ -400,8 +523,7 @@ footer {
   }
 
   .about-box,
-  .contact-box,
-  .timeline-item {
+  .contact-box {
     padding: 24px;
   }
 
@@ -505,7 +627,7 @@ footer {
         </div>
 
         <div class="col-lg-6" data-aos="fade-left">
-          <h3 class="fw-bold mb-4">Account Executive | Website & Network Engineer</h3>
+          <h3 class="fw-bold mb-4">Marketing, Software & Network Engineer</h3>
           <p>
             Saya adalah lulusan Rekayasa Perangkat Lunak dari SMK Negeri 1 Tengaran dengan nilai rata-rata 86. Memiliki kompetensi kuat dalam pengembangan aplikasi web (Frontend & Fullstack) serta pemahaman taktis pada infrastruktur jaringan.
           </p>
@@ -526,7 +648,7 @@ footer {
       <div class="col-6 col-md-6 col-lg-4">
         <div data-aos="zoom-in" class="h-100">
           <div class="card-modern"> 
-            <img src="assets/img/project1.jpeg">
+            <img src="assets/img/project1.png">
             <div class="card-body">
               <h4>Warmindo Website (Kolaborasi)</h4>
               <p>Platform pemesanan Warmindo online yang responsif. Di sini saya berperan sebagai Frontend Developer yang fokus pada desain antarmuka, visual menu, dan pengalaman transaksi pengguna.</p>
@@ -535,13 +657,13 @@ footer {
         </div>
       </div>
 
-     <div class="col-6 col-md-6 col-lg-4">
+      <div class="col-6 col-md-6 col-lg-4">
         <div data-aos="zoom-in" class="h-100">
           <div class="card-modern">
-            <img src="assets/img/project2.jpeg">
+            <img src="assets/img/project2.png">
             <div class="card-body">
-              <h4>Football Ticket Platform</h4>
-              <p>Platform pemesanan tiket bioskop/pertandingan sepak bola yang saya bangun secara Fullstack, mengintegrasikan sistem pembelian tiket sekaligus pembaruan klasemen liga secara real-time.</p>
+              <h4>Wishvault</h4>
+              <p>Aplikasi web responsif untuk mencatat dan mengurasi produk impian atau barang dalam satu tempat dengan tampilan yang bersih dan intuitif.</p>
             </div>
           </div>
         </div>
@@ -550,10 +672,10 @@ footer {
       <div class="col-6 col-md-6 col-lg-4">
         <div data-aos="zoom-in" class="h-100">
           <div class="card-modern">
-            <img src="assets/img/project3.jpeg">
+            <img src="assets/img/project3.png">
             <div class="card-body">
-              <h4>Wishvault</h4>
-              <p>Aplikasi web responsif untuk mencatat dan mengurasi produk impian atau barang dalam satu tempat dengan tampilan yang bersih dan intuitif.</p>
+              <h4>Football Ticket Platform</h4>
+              <p>Platform pemesanan tiket bioskop/pertandingan sepak bola yang saya bangun secara Fullstack, mengintegrasikan sistem pembelian tiket sekaligus pembaruan klasemen liga secara real-time.</p>
             </div>
           </div>
         </div>
@@ -620,30 +742,46 @@ footer {
     <h2 class="section-title" data-aos="fade-up">Experience</h2>
 
     <div class="timeline">
-      <div data-aos="fade-up">
-        <div class="timeline-item">
+
+      <div class="timeline-row" data-aos="fade-right">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card">
+          <img src="assets/img/ex4.jpg" class="experience-img">
+          <h5>Adira Finance - Retention Executive Agen</h5>
+          <small>Juny 2026 - Present</small>
+          <p>
+            Mengelola promosi layanan pembiayaan secara optimal melalui saluran digital (online) dan interaksi langsung dengan klien di kantor, serta membangun komunikasi profesional untuk mencapai target akuisisi nasabah.
+         </p>
+        </div>
+      </div>
+      
+      <div class="timeline-row" data-aos="fade-right">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card">
           <img src="assets/img/ex1.png" class="experience-img">
           <h5>MyRepublic - Account Executive</h5>
-          <small>May 2026 - Present</small>
+          <small>May 2026</small>
           <p>
             Bekerja dalam membangun komunikasi profesional dan promosi langsung di lapangan untuk mengejar target penjualan layanan internet perusahaan.
           </p>
         </div>
       </div>
 
-      <div data-aos="fade-up">
-        <div class="timeline-item">
+      <div class="timeline-row" data-aos="fade-left">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card">
           <img src="assets/img/ex2.jpg" class="experience-img">
           <h5>PT Telkom Akses - Internship</h5>
           <small>January 2026 - April 2026</small>
           <p>
-            Menjalani masa magang dengan mengelola input data operasional harian ke database, mendampingi teknisi untuk instalasi dan perbaikan jaringan fiber optik, serta membantu distribusi dan panataan material.
+            Menjalani masa magang dengan mengelola input data operasional harian ke database, mendampingi teknisi untuk instalasi dan perbaikan jaringan fiber optik, serta membantu distribusi dan penataan material.
           </p>
         </div>
       </div>
 
-      <div data-aos="fade-up">
-        <div class="timeline-item">
+      <div class="timeline-row" data-aos="fade-right">
+        <div class="timeline-badge"></div>
+        <div class="timeline-card">
           <img src="assets/img/ex3.jpeg" class="experience-img">
           <h5>SMK Negeri 1 Tengaran - Rekayasa Perangkat Lunak</h5>
           <small>July 2023 - May 2026</small>
@@ -652,6 +790,7 @@ footer {
           </p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -667,8 +806,8 @@ footer {
       </p>
 
       <div class="social-icons">
-        <a href="#"><i class="fab fa-github"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/irawandito"><i class="fab fa-github"></i></a>
+        <a href="https://www.instagram.com/_naditocunha?igsh=cGRzNzhhYzAwb256"><i class="fab fa-instagram"></i></a>
         <a href="#"><i class="fab fa-whatsapp"></i></a>
       </div>
     </div>
@@ -711,13 +850,11 @@ document.querySelectorAll('.nav-link, .btn-main').forEach(anchor => {
       const navbarHeight = document.getElementById('navbar').offsetHeight;
       const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - (navbarHeight - 10);
       
-      // Menggunakan native scrollTo dengan behavior smooth setelah CSS dinonaktifkan
       window.scrollTo({
         top: targetPosition,
         behavior: 'smooth'
       });
 
-      // Tutup toggle menu otomatis di HP setelah diklik
       const navbarCollapse = document.getElementById('navMenu');
       if (navbarCollapse.classList.contains('show')) {
         const bootstrapCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
